@@ -56,6 +56,12 @@ public class XmlBeanFactory implements BeanFactory {
         return bean;
     }
 
+    /**
+     * 为原始bean注入属性
+     * @param bean
+     * @param bd
+     * @throws Exception
+     */
     private void applyPropertyValues(Object bean, BeanDefinition bd) throws Exception {
         if (bean instanceof BeanFactoryAware) {
             ((BeanFactoryAware) bean).setBeanFactory(this);
@@ -64,10 +70,12 @@ public class XmlBeanFactory implements BeanFactory {
             Object value = propertyValue.getValue();
             if (value instanceof BeanReference) {
                 BeanReference beanReference = (BeanReference) value;
+//                依赖其余bean，递归创建
                 value = getBean(beanReference.getName());
             }
 
             try {
+//                通过反射注入属性值
                 Method declaredMethod = bean.getClass().getDeclaredMethod(
                         "set" + propertyValue.getName().substring(0, 1).toUpperCase()
                                 + propertyValue.getName().substring(1), value.getClass());

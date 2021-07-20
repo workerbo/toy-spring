@@ -44,7 +44,7 @@ final public class JdkDynamicAopProxy extends AbstractAopProxy implements Invoca
 
             // 获取 Advice。MethodInterceptor 的父接口继承了 Advice
             MethodInterceptor methodInterceptor = advised.getMethodInterceptor();
-
+//            包含了将通知（Advice）织入相关方法中
             // 将 bean 的原始 method 封装成 MethodInvocation 实现类对象，
             // 将生成的对象传给 Adivce 实现类对象，执行通知逻辑
             return methodInterceptor.invoke(

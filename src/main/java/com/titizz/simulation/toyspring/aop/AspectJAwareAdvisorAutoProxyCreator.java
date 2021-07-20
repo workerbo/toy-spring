@@ -9,6 +9,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 import java.util.List;
 
 /**
+ * IOC和AOP的融合
  * Created by code4wt on 17/8/16.
  */
 public class AspectJAwareAdvisorAutoProxyCreator implements BeanPostProcessor, BeanFactoryAware {
